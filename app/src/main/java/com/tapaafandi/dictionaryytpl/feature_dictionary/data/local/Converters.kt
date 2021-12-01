@@ -1,10 +1,12 @@
 package com.tapaafandi.dictionaryytpl.feature_dictionary.data.local
 
+import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.google.gson.reflect.TypeToken
 import com.tapaafandi.dictionaryytpl.feature_dictionary.data.util.JsonParser
 import com.tapaafandi.dictionaryytpl.feature_dictionary.domain.model.Meaning
 
+@ProvidedTypeConverter
 class Converters(
     private val jsonParser: JsonParser
 ) {
@@ -16,6 +18,7 @@ class Converters(
         ) ?: emptyList()
     }
 
+    @TypeConverter
     fun toMeaningsJson(meanings: List<Meaning>): String {
         return jsonParser.toJson(
             meanings,
